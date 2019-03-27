@@ -3,6 +3,7 @@
 class Categories {
 
   constructor() {
+    this.database = [];
   }
 
   get(_id) {
