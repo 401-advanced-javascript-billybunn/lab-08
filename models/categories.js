@@ -35,6 +35,9 @@ class Categories {
   }
 
   put(_id, record) {
+    if(record._id) {this.database = this.database.map(dbRecord => dbRecord._id === _id 
+      ? record
+      : dbRecord);}
   }
 
   delete(_id) {

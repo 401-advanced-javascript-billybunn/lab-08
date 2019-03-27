@@ -5,15 +5,6 @@ const CategoriesDatabase = require('../categories');
 const categories = new CategoriesDatabase();
 
 describe('Categories', () => {
-  it('', () => {
-    expect(true).toBeTruthy();
-  });
-
-  it('post() -- can create a category', () => {
-    let category = {name: 'Electronics'};
-    let createdCategory = categories.post(category);
-    expect(createdCategory.name).toEqual(category.name);
-  });
 
   it('get(_id) -- can get a list of categories', () => {
     let categoriesList = categories.get();
@@ -26,4 +17,23 @@ describe('Categories', () => {
     let foundCategory = categories.get(createdCategory._id);
     expect(foundCategory._id).toEqual(createdCategory._id);
   });
+
+  it('post() -- can create a category', () => {
+    let category = {name: 'Electronics'};
+    let createdCategory = categories.post(category);
+    expect(createdCategory.name).toEqual(category.name);
+  });
+
+  it('put() -- can edit a single category', () => {
+    
+    expect(true).toBeTruthy();
+  });
+
+  xit('delete() -- can delete a single category', () => {
+
+  });
+
+  
+
+  
 });
