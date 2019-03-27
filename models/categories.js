@@ -7,7 +7,7 @@ const uuid = require('uuid/v4');
 const schema = {
   id: { required: true },
   name: { required: true },
-  display_name: {require: true},
+  display_name: { require: true },
 };
 
 class Categories {
@@ -17,6 +17,11 @@ class Categories {
   }
 
   get(_id) {
+    let response = _id
+      ? this.database.filter(record => record._id === _id)[0]
+      : this.database;
+    return response;
+
   }
 
   post(record) {
