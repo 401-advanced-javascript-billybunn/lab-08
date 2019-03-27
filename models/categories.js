@@ -1,5 +1,7 @@
 'use strict';
 
+const uuid = require('uuid/v4');
+
 class Categories {
 
   constructor() {
@@ -10,6 +12,9 @@ class Categories {
   }
   
   post(record) {
+    record.id = uuid();
+    this.database.push(record);
+    return record;
   }
 
   put(_id, record) {
