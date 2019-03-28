@@ -24,15 +24,19 @@ describe('Categories', () => {
     expect(createdCategory.name).toEqual(category.name);
   });
 
+  it('validate() -- rejects entries without all required schema fields', () => {
+    let category = {name:'hardware'};
+    let postAttempt = categories.post(category);
+    expect(postAttempt.name).toBe(undefined);
+  });
+
   it('put() -- can edit a single category', () => {
     // add a category to the db (need to do this here to grab '_id')
     let category = {name: 'office', display_name:'Office Supplies'};
     let createdCategory = categories.post(category);
 
-    // console.log(createdCategory);
     // entry to update the category we created with a new name
-    let updatedCategory = {...createdCategory, name: 'Cosmetics'};
-    // console.log(updatedCategory);
+    let updatedCategory = {...createdCategory, name: 'cosmetics', display_name:'Makeup and Cosmetics'};
     categories.put(updatedCategory._id, updatedCategory);
 
     // test to see that a category with _id above was changed
