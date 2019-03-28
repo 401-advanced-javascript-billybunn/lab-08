@@ -35,13 +35,18 @@ class Categories {
   }
 
   put(_id, entry) {
-    let record = this.validate(entry);
-    if(record._id) {this.database = this.database.map(dbRecord => dbRecord._id === _id 
-      ? record
-      : dbRecord);}
+    if (this.validate(entry)) {
+      let record = entry;
+      this.database = this.database.map(dbRecord => dbRecord._id === _id
+        ? dbRecord = record
+        : dbRecord);
+    } else {
+      return null;
+    }
   }
 
   delete(_id) {
+    this.database = this.database.filter((record) => record._id !== _id);
   }
 
   validate(record) {

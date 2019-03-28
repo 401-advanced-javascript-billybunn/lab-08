@@ -25,17 +25,29 @@ describe('Categories', () => {
   });
 
   it('put() -- can edit a single category', () => {
-    // let category = {_id: 1}
+    // add a category to the db (need to do this here to grab '_id')
     let category = {name: 'Office Supplies'};
     let createdCategory = categories.post(category);
 
-    let putCategory = {...createdCategory, name: 'Cosmetics'};
-    console.log(putCategory._id, createdCategory._id);
-    expect(putCategory._id).toEqual(createdCategory._id);
-    expect(putCategory.name).not.toEqual(createdCategory.name);
+    // entry to update the category we created with a new name
+    let updatedCategory = {...createdCategory, name: 'Cosmetics'};
+    categories.put(updatedCategory._id, updatedCategory);
+
+    // test to see that a category with _id above was changed
+    expect(updatedCategory._id).toEqual(categories.get(createdCategory._id)._id);
+    expect(createdCategory.name).not.toEqual(categories.get(createdCategory._id).name);
   });
 
   xit('delete() -- can delete a single category', () => {
+
+    let category = {name: 'Clothing'};
+    let createdCategory = categories.post(category);
+
+    let categoryToDeleteId = createdCategory._id;
+
+    // ex
+
+    expect(true).toBeTruthy();
 
   });
 
