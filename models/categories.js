@@ -5,7 +5,7 @@ const uuid = require('uuid/v4');
 // ??? required: false
 // ??? type: string, array, object, number
 const schema = {
-  id: { required: true },
+  _id: { required: true },
   name: { required: true },
   display_name: { require: true },
 };
@@ -25,7 +25,7 @@ class Categories {
   }
 
   post(record) {
-    record.id = uuid();
+    record._id = uuid();
     if (this.validate(record)) {
       this.database.push(record);
       return record;
@@ -34,7 +34,8 @@ class Categories {
     }
   }
 
-  put(_id, record) {
+  put(_id, entry) {
+    let record = this.validate(entry);
     if(record._id) {this.database = this.database.map(dbRecord => dbRecord._id === _id 
       ? record
       : dbRecord);}

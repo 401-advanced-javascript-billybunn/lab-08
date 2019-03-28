@@ -25,8 +25,14 @@ describe('Categories', () => {
   });
 
   it('put() -- can edit a single category', () => {
-    
-    expect(true).toBeTruthy();
+    // let category = {_id: 1}
+    let category = {name: 'Office Supplies'};
+    let createdCategory = categories.post(category);
+
+    let putCategory = {...createdCategory, name: 'Cosmetics'};
+    console.log(putCategory._id, createdCategory._id);
+    expect(putCategory._id).toEqual(createdCategory._id);
+    expect(putCategory.name).not.toEqual(createdCategory.name);
   });
 
   xit('delete() -- can delete a single category', () => {
