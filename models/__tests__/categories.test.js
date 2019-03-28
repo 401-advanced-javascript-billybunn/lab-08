@@ -51,13 +51,8 @@ describe('Categories', () => {
 
     let categoryToDeleteId = createdCategory._id;
 
-    // ex
-
     expect(true).toBeTruthy();
 
   });
-
-  
-
   
 });
