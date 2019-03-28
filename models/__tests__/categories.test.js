@@ -12,21 +12,21 @@ describe('Categories', () => {
   });
 
   it('get() -- can get a single category', () => {
-    let category = {name: 'Home Goods'};
+    let category = {name: 'home', display_name: 'Home Goods'};
     let createdCategory = categories.post(category);
     let foundCategory = categories.get(createdCategory._id);
     expect(foundCategory._id).toEqual(createdCategory._id);
   });
 
   it('post() -- can create a category', () => {
-    let category = {name: 'Electronics'};
+    let category = {name: 'electronics', display_name: 'Gizmos and Gadgets'};
     let createdCategory = categories.post(category);
     expect(createdCategory.name).toEqual(category.name);
   });
 
   it('put() -- can edit a single category', () => {
     // add a category to the db (need to do this here to grab '_id')
-    let category = {name: 'Office Supplies'};
+    let category = {name: 'office', display_name:'Office Supplies'};
     let createdCategory = categories.post(category);
 
     // console.log(createdCategory);

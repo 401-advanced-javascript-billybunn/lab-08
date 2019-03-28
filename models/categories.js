@@ -30,7 +30,7 @@ class Categories {
       this.database.push(record);
       return record;
     } else {
-      return {error: 'must contain required fields'};
+      return { error: 'must contain required fields' };
     }
   }
 
@@ -41,7 +41,7 @@ class Categories {
         : dbRecord);
       return entry;
     } else {
-      return `No records found with _id: ${_id}`;
+      return {error: `No records found with _id: ${_id}`};
     }
   }
 
@@ -50,57 +50,56 @@ class Categories {
       this.database = this.database.filter((record) => record._id !== _id);
       return {};
     } else {
-      return `No records found with _id: ${_id}`;
+      return {error: `No records found with _id: ${_id}`};
     }
 
   }
 
   validate(record) {
-
     let valid = true;
 
     let requiredFields = Object.entries(schema).reduce((arr, keyPair) => {
       if (keyPair[1].required) arr.push(keyPair[0]);
       return arr;
-    },[]);
-    // requiredFields;
+    }, []);
 
-    if(re) valid = false;
-
-
-
-
-
-
-    // check properties of the schema against the record
-    let valid = true;
-
-    // let requiredKeys = Object.entries(schema).map(keyPair => {
-    //   console.log(keyPair[0]);
-    //   if(keyPair[1].required) return keyPair[0]; 
-    // });
-    let requiredKeys = Object.entries(schema).reduce((arr, keyPair) => {
-      // console.log(keyPair);
-      if (keyPair[1].require) return arr.push(keyPair[0]);
-      // return arr;
-    },[]);
-
-    // ADD LOGIC HERE!!!!!!!!!!!!
-
-    console.log(requiredKeys);
-    Object.keys(schema).forEach(field => {
-      // if (schema[field].required) {
-      // console.log(field);
-      if (!record[field]) {
-        // console.log('no field');
-        valid = false;
-      }
-      // }
+    requiredFields.forEach(field => {
+      console.log(Object.keys(record).includes(field));
+      if (!Object.keys(record).includes(field)) { valid = false; }
     });
-    // console.log(valid);
+    
     return valid;
   }
-
 }
 
 module.exports = Categories;
+
+
+
+
+
+
+    // // check properties of the schema against the record
+    // let valid = true;
+
+    // // let requiredKeys = Object.entries(schema).map(keyPair => {
+    // //   console.log(keyPair[0]);
+    // //   if(keyPair[1].required) return keyPair[0]; 
+    // // });
+    // let requiredKeys = Object.entries(schema).reduce((arr, keyPair) => {
+    //   // console.log(keyPair);
+    //   if (keyPair[1].require) return arr.push(keyPair[0]);
+    //   // return arr;
+    // },[]);
+
+    // console.log(requiredKeys);
+    // Object.keys(schema).forEach(field => {
+    //   // if (schema[field].required) {
+    //   // console.log(field);
+    //   if (!record[field]) {
+    //     // console.log('no field');
+    //     valid = false;
+    //   }
+    //   // }
+    // });
+    // console.log(valid);
