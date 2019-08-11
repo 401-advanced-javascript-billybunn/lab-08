@@ -5,7 +5,7 @@
  */
 
 const mongoose = require('mongoose');
-const MongoMemoryServer = require('mongodb-memory-server').default;
+// const MongoMemoryServer = require('mongodb-memory-server').default;
 const supertest = require('supertest');
 
 let mongoServer;
@@ -28,7 +28,7 @@ supergoose.startDB = async () => {
   
   const mongooseOptions = {
     useNewUrlParser:true,
-    useCreateIndex: true
+    useCreateIndex: true,
   };
   
   await mongoose.connect(mongoUri, mongooseOptions, (err) => {
